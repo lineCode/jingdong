@@ -77,11 +77,11 @@ def place_order():
                 couponPrice = train['data']['exData2']['couponPrice']
                 logger.info('get couponPrice %s' % couponPrice)
 
-            # if couponid:
-            #     logger.info('find out couponid')
-            #     if not login.get_couponList(cookie, couponid):
-            #         logger.info('faild')
-            #         raise Exception(u'没有找到优惠卷,%s' % couponid)
+            if couponid:
+                logger.info('find out couponid')
+                if not login.get_couponList(cookie, couponid):
+                    logger.info('faild')
+                    raise Exception(u'没有找到优惠卷,%s' % couponid)
 
             order = http_handler.order.Order(uuid, user_agent, h5_cookie)
             passengers = train['data']['passengersInfo']

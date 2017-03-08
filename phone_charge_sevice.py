@@ -245,7 +245,7 @@ def phone_charge():
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             body = {"mobile": mobile}
             sign = auth.sign('searchPczPriceList', uuid, json.dumps(body))
-            url = 'http://api.m.jd.com/client.action?functionId=searchPczPriceList&clientVersion=5.3.0&build=36639&client=android&d_brand=nubia&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+            url = 'http://api.m.jd.com/client.action?functionId=searchPczPriceList&clientVersion=5.8.0&build=42523&client=android&d_brand=nubia&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
                 uuid, sign[1], sign[0])
 
             logger.info('get jd price')
@@ -270,7 +270,7 @@ def phone_charge():
 
             logger.info('get compon')
             sign = auth.sign('queryPczFavourableInfo', uuid, json.dumps(body))
-            url = 'http://api.m.jd.com/client.action?functionId=queryPczFavourableInfo&clientVersion=5.3.0&build=36639&client=android&d_brand=nubia&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+            url = 'http://api.m.jd.com/client.action?functionId=queryPczFavourableInfo&clientVersion=5.8.0&build=42523&client=android&d_brand=nubia&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
                 uuid, sign[1], sign[0])
 
             resp = requests.post(url, data='body=' + urllib.quote_plus(json.dumps(body)) + '&', headers=headers)
@@ -312,7 +312,7 @@ def phone_charge():
             #         "jdPrice": str(data['jd_price']),
             #         "payType": "0", "type": "1", "contact": "false", "mobile": mobile}
             sign = auth.sign('submitPczOrder', uuid, json.dumps(body))
-            url = 'http://api.m.jd.com/client.action?functionId=submitPczOrder&client=android&clientVersion=5.3.0&build=36639&osVersion=4.4.2&screen=1280*720&partner=tencent&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+            url = 'http://api.m.jd.com/client.action?functionId=submitPczOrder&client=android&clientVersion=5.8.0&build=42523&osVersion=4.4.2&screen=1280*720&partner=tencent&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
                 uuid, sign[1], sign[0])
             body = 'body=' + urllib.quote_plus(json.dumps(body)) + '&'
             logger.debug('POST %s\n%s' % (url, body))
@@ -366,7 +366,7 @@ def sync_status_from_jd():
                         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
                     body = {"orderId": order['jd_order_id']}
                     sign = auth.sign('queryPczOrderInfo', uuid, json.dumps(body))
-                    url = 'http://api.m.jd.com/client.action?functionId=queryPczOrderInfo&clientVersion=5.3.0&build=36639&client=android&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+                    url = 'http://api.m.jd.com/client.action?functionId=queryPczOrderInfo&clientVersion=5.8.0&build=42523&client=android&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
                         uuid, sign[1], sign[0])
                     body = 'body=' + urllib.quote_plus(json.dumps(body)) + '&'
                     while True:

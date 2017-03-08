@@ -37,7 +37,7 @@ class HttpFirstTest(unittest.TestCase):
         sign = auth.sign('newUserInfo', uuid, body)
         print sign
 
-        url = 'http://api.m.jd.com/client.action?functionId=newUserInfo&clientVersion=5.3.0&build=36639&client=android&d_brand=ZTE&d_model=SCH-I779&osVersion=4.4.2&screen=1280*720&partner=tencent&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+        url = 'http://api.m.jd.com/client.action?functionId=newUserInfo&clientVersion=5.8.0&build=36639&client=android&d_brand=ZTE&d_model=SCH-I779&osVersion=4.4.2&screen=1280*720&partner=tencent&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
             uuid, sign[1], sign[0])
         print url
 
@@ -54,7 +54,7 @@ class HttpFirstTest(unittest.TestCase):
         body = {"action": "to", "to": 'https%3A%2F%2Ftrain.m.jd.com'}
         print body
         sign = auth.sign('genToken', uuid, json.dumps(body))
-        url = 'http://api.m.jd.com/client.action?functionId=genToken&clientVersion=5.3.0&build=36639&client=android&d_brand=ZTE&d_model=SCH-I779&osVersion=4.4.2&screen=1280*720&partner=tencent&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+        url = 'http://api.m.jd.com/client.action?functionId=genToken&clientVersion=5.8.0&build=36639&client=android&d_brand=ZTE&d_model=SCH-I779&osVersion=4.4.2&screen=1280*720&partner=tencent&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
             uuid, sign[1], sign[0])
         print url
         headers = {
@@ -170,7 +170,7 @@ class HttpFirstTest(unittest.TestCase):
     def test_seach_phone(self):
         body = {"mobile": "m6zea9UPXp1LKzYzd1YWow=="}
         sign = auth.sign('searchPczPriceList', self.uuid, json.dumps(body))
-        url = 'http://api.m.jd.com/client.action?functionId=searchPczPriceList&clientVersion=5.3.0&build=36639&client=android&osVersion=4.4.2&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+        url = 'http://api.m.jd.com/client.action?functionId=searchPczPriceList&clientVersion=5.8.0&build=42523&client=android&osVersion=4.4.2&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
             self.uuid, sign[1], sign[0])
         headers = {
             'Charset': 'UTF-8',
@@ -191,7 +191,7 @@ class HttpFirstTest(unittest.TestCase):
     def test_queryNoticeConfig(self):
         body = {"configType": 1, "mobile": "m6zea9UPXp1LKzYzd1YWow=="}
         sign = auth.sign('queryNoticeConfig', self.uuid, json.dumps(body))
-        url = 'http://api.m.jd.com/client.action?functionId=queryNoticeConfig&clientVersion=5.3.0&build=36639&client=android&d_brand=nubia&d_model=NX507J&osVersion=4.4.2&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+        url = 'http://api.m.jd.com/client.action?functionId=queryNoticeConfig&clientVersion=5.8.0&build=42523&client=android&d_brand=nubia&d_model=NX507J&osVersion=4.4.2&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
             self.uuid, sign[1], sign[0])
         headers = {
             'Charset': 'UTF-8',
@@ -207,7 +207,7 @@ class HttpFirstTest(unittest.TestCase):
     def test_user_mobile(self):
         body = {}
         sign = auth.sign('getUserMobile', self.uuid, json.dumps(body))
-        url = 'http://api.m.jd.com/client.action?functionId=getUserMobile&clientVersion=5.3.0&build=36639&client=android&d_brand=nubia&d_model=NX507J&osVersion=4.4.2&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+        url = 'http://api.m.jd.com/client.action?functionId=getUserMobile&clientVersion=5.8.0&build=42523&client=android&d_brand=nubia&d_model=NX507J&osVersion=4.4.2&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
             self.uuid, sign[1], sign[0])
         headers = {
             'Charset': 'UTF-8',
@@ -224,7 +224,7 @@ class HttpFirstTest(unittest.TestCase):
     def test_queryPczFavourableInfo(self):
         body = {}
         sign = auth.sign('queryPczFavourableInfo', self.uuid, json.dumps(body))
-        url = 'http://api.m.jd.com/client.action?functionId=queryPczFavourableInfo&clientVersion=5.3.0&build=36639&client=android&d_brand=nubia&d_model=NX507J&osVersion=4.4.2&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+        url = 'http://api.m.jd.com/client.action?functionId=queryPczFavourableInfo&clientVersion=5.8.0&build=42523&client=android&d_brand=nubia&d_model=NX507J&osVersion=4.4.2&screen=1920*1080&partner=waps007&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
             self.uuid, sign[1], sign[0])
         headers = {
             'Charset': 'UTF-8',
@@ -245,7 +245,7 @@ class HttpFirstTest(unittest.TestCase):
         # body = {"facePrice": "10", "isBingding": "0", "isNote": "0", "jdPrice": "10.00", "payType": "0",
         #         "type": "1", "contact": "false", "mobile": "945UOUTLqNSLi+9eu1zb1g=="}
         sign = auth.sign('submitPczOrder', self.uuid, json.dumps(body))
-        url = 'http://api.m.jd.com/client.action?functionId=submitPczOrder&client=android&clientVersion=5.3.0&build=36639&d_brand=ZTE&d_model=SCH-I779&osVersion=4.4.2&screen=1280*720&partner=tencent&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+        url = 'http://api.m.jd.com/client.action?functionId=submitPczOrder&client=android&clientVersion=5.8.0&build=42523&d_brand=ZTE&d_model=SCH-I779&osVersion=4.4.2&screen=1280*720&partner=tencent&uuid=%s&area=1_0_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
             self.uuid, sign[1], sign[0])
 
         headers = {

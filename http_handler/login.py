@@ -33,7 +33,7 @@ class Login:
     def get_h5_cookie(self, cookie):
         body = {"action": "to", "to": 'https%3A%2F%2Ftrain.m.jd.com'}
         sign = auth.sign('genToken', self.uuid, json.dumps(body))
-        url = 'http://api.m.jd.com/client.action?functionId=genToken&clientVersion=5.3.0&build=36639&client=android&d_brand=&d_model=&osVersion=&screen=1280*720&partner=tencent&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+        url = 'http://api.m.jd.com/client.action?functionId=genToken&clientVersion=5.8.0&build=42523&client=android&d_brand=&d_model=&osVersion=&screen=1280*720&partner=tencent&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
             self.uuid, sign[1], sign[0])
 
         logger.debug('POST %s' % url)
@@ -73,12 +73,13 @@ class Login:
         body = {"pageSize": "10", "page": "1"}
         sign = auth.sign('configCouponList', self.uuid, json.dumps(body))
         resp = requests.post(
-            url = 'http://api.m.jd.com/client.action?functionId=configCouponList&clientVersion=5.3.0&build=36639&client=android&d_brand=&d_model=&osVersion=&screen=1280*720&partner=tencent&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+            url='http://api.m.jd.com/client.action?functionId=configCouponList&clientVersion=5.8.0&build=42523&client=android&d_brand=nubia&d_model=NX507J&osVersion=4.4.2&screen=1920*1080&partner=jingdong2&uuid=%s&area=1_2802_2821_0&networkType=wifi&st=%s&sign=%s&sv=111'%(
+            #url = 'http://api.m.jd.com/client.action?functionId=configCouponList&clientVersion=5.8.0&build=42523&client=android&d_brand=&d_model=&osVersion=&screen=1280*720&partner=tencent&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
             self.uuid, sign[1], sign[0]),
             data='body=' + urllib.quote(json.dumps(body)) + '&',
             headers=headers)
-        logger.debug(resp.url)
-        logger.debug(resp.text)
+        logger.info(resp.url)
+        logger.info(resp.text)
 
         list = resp.json()
         if id:
