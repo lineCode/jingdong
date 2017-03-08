@@ -12,11 +12,11 @@ class HttpFirstTest(unittest.TestCase):
     def setUp(self):
         # self.uuid = base_data.get_random_number() + '-' + base_data.get_random_letter_number(12).lower()
         # self.user_agent = base_data.get_user_agent()
-        self.name = 'jd_600c09353d777'
-        self.pwd = 'mozhisi5245'
+        self.name = '18561416044'
+        self.pwd = 'atv5g9'
         self.uuid = '823466913984714-pgveoceqje9l'
         self.user_agent = 'Mozilla/5.0 (Symbian/3; Series60/5.2 NokiaN8-00/012.002; Profile/MIDP-2.1 Configuration/CLDC-1.1 ) AppleWebKit/533.4 (KHTML, like Gecko) NokiaBrowser/7.3.0 Mobile Safari/533.4 3gpp-gba'
-        self.cookie = 'pin=duanchen9253; wskey=AVh1uK0AQMnASYaLG8wBLul4xB4HS0no7-2Xv5xxAqYgBCLiPLYKCQmyHUhj7uPb3O32O3lzFu3eFmEGeyaqPsXAaB4ro8k; whwswswws=;'
+        self.cookie = 'pin=jd_551be3034b5ca; wskey=AAFYv6tuAEDeXTGdE8dKPGyZKmsEitVCruCM5vJCPBOEMJlAfjUgYY-ycGw3o5eJk5Plkyj3mulx9Ayc7NggzDVorBvud7zU; whwswswws='
 
     def login_test(self):
         url = 'http://wlogin.m.jd.com/applogin_v2'
@@ -114,10 +114,10 @@ class HttpFirstTest(unittest.TestCase):
     def order_generate_test(self):
         url = 'http://train.m.jd.com/bookSeat/generateOrder.json'
         cookie = 'pt_key=%s;pwdt_id=%s;sid=%s;guid=%s;pt_pin=%s;mobilev=%s' % (
-            'app_openAAFYU4WsADDH7EE60HYI0wgAE0DRroawjUhbuJkcoTIFluuYKRoVB7CarIn8JDPZvuZd2QGpC7E',
-            'jd_600c09353d777', '9b5af43aa01130b4040ea4f3b5e9dcew',
-            'c87c34e778121761700fea6ea315bbdbde63167bd706f05493e045e6c473dd79',
-            'jd_600c09353d777', 'touch')
+            'app_openAAFYs9-_ADA5t-ix45GnWMBquStQ3_EdPmExk8eUNyr53Hw-GUBFGURxeWi2KZ4kZLdXv2cIRCM',
+            'jd_5a79c1d8a87d2', '4b9d824977fd91cb41ab6e5379be5e8w',
+            'b41b436469e513f649316b9b975ea0960fe44c71ef531dcea8e510276f940ece',
+            'jd_5a79c1d8a87d2', 'touch')
 
         headers = {'Pragma': 'no-cache',
                    'Cache-Control': 'no-cache',
@@ -130,7 +130,7 @@ class HttpFirstTest(unittest.TestCase):
                    'Accept-Language': 'zh-CN,en-US;q=0.8',
                    'cookie': cookie}
         # data = 'cheCi=G5&seatType=edz&seatPrice=55300&fromStationCode=VNP&fromStationName=%E5%8C%97%E4%BA%AC%E5%8D%97&toStationCode=AOH&toStationName=%E4%B8%8A%E6%B5%B7%E8%99%B9%E6%A1%A5&trainDate=1480435200000&passengerIds=1204607&contact=%E5%90%B4%E5%8B%87%E5%88%9A&phone=13978632546&realBook=1&account=&password='
-        data = 'cheCi=G312&seatType=edz&seatPrice=31400&fromStationCode=IZQ&fromStationName=广州南&toStationCode=CWQ&toStationName=长沙南&trainDate=1482508800000&trainTime=06:30&passengerIds=1577878&contact=刘禹&phone=13796325412&realBook=1&account=&password=&hasInsurance=false&insuranceCode=0&hasInvoice=false&invoiceJson={}&isGrab=false'
+        data = 'cheCi=G312&seatType=edz&seatPrice=31400&fromStationCode=IZQ&fromStationName=广州南&toStationCode=CWQ&toStationName=长沙南&trainDate=2017-03-01&trainTime=06:30&passengerIds=1577878&contact=刘禹&phone=13796325412&realBook=1&account=&password=&hasInsurance=false&insuranceCode=0&hasInvoice=false&invoiceJson={}&isGrab=false'
         req = requests.post(url, data=data, headers=headers)
         resp = req.json()
 
@@ -138,7 +138,7 @@ class HttpFirstTest(unittest.TestCase):
 
         orderid = resp['orderId']
 
-        url = 'https://train.m.jd.com/bookSeat/book/s_1480435200000_%E5%8C%97%E4%BA%AC_BJP_%E4%B8%8A%E6%B5%B7_SHH_G5_edz'
+        url = 'https://train.m.jd.com/bookSeat/book/s_2017-03-01_%E5%8C%97%E4%BA%AC_BJP_%E4%B8%8A%E6%B5%B7_SHH_G5_edz'
         req = requests.get(url, headers=headers, verify=False)
 
         print req.text
@@ -146,10 +146,10 @@ class HttpFirstTest(unittest.TestCase):
     def order_submit(self):
         url = 'https://train.m.jd.com/bookSeat/submitOrder.action'
         cookie = 'pt_key=%s;pwdt_id=%s;sid=%s;guid=%s;pt_pin=%s;mobilev=%s' % (
-            'app_openAAFYPUnCADBJkBmvF5KqdNzJkXaxqJXTvSn3XpeR19IrTyoFZeTjQhp4rez431oMmtKSqQUHZIA',
-            'jd_5b64e3796d3d7', '3ff2638bdcf7e21e7afcf6d3f4dc57bw',
-            '4bf7c404c3d9c7b68c91f21ec4613a74148c3599b38a85dc079252b2b833b11f',
-            'jd_5b64e3796d3d7', 'touch')
+            'app_openAAFYs9-_ADA5t-ix45GnWMBquStQ3_EdPmExk8eUNyr53Hw-GUBFGURxeWi2KZ4kZLdXv2cIRCM',
+            'jd_5a79c1d8a87d2', '4b9d824977fd91cb41ab6e5379be5e8w',
+            'b41b436469e513f649316b9b975ea0960fe44c71ef531dcea8e510276f940ece',
+            'jd_5a79c1d8a87d2', 'touch')
 
         headers = {'Pragma': 'no-cache',
                    'Cache-Control': 'no-cache',
@@ -298,7 +298,7 @@ class HttpFirstTest(unittest.TestCase):
             'Referer': 'https://train.m.jd.com/ticket/tickets/s_1483977600000_%E5%B9%BF%E5%B7%9E%E5%8D%97_IZQ_%E9%95%BF%E6%B2%99%E5%8D%97_CWQ_0_0_0_0_0_0_0_0_0',
             'Accept-Encoding': 'gzip, deflate',
             'Accept-Language': 'zh-CN,en-US;q=0.8',
-            'Cookie': 'pt_key=app_openAAFYc1DhADB38JsPqg_5CsVgAcrUzUzwLPmtQ4pszvNVvDnJiQHsh8Sou3vVhBuNBGuEUKAht-Q; pt_pin=chaiwo6044; pwdt_id=chaiwo6044; sid=0fd1392c08a4bafc1c3ead4f22a577bw; __jdu=1585792057; mobilev=touch; __jda=122270672.1585792057.1482752023390.1482752023390.1483952449075.2; __jdb=122270672.2.1585792057|2.1483952449075; __jdc=122270672; mba_sid=1147.20; mba_muid=1585792057.1147.1483952457476; pre_session=863175026618021-a8a6681e316b|1245; pre_seq=3; __jdv=122270672|direct|-|none|-|1482752023413'
+            'Cookie': 'pt_key=app_openAAFYv6u0ADBb0wkokQ1D1N3SailAjbXTjG8NiEnlc58qNY2oC_MNPsh8qYLAwYbzNM0olsW34_A; pt_pin=jd_551be3034b5ca; pwdt_id=jd_551be3034b5ca; sid=628e6c3ea185076f2563c39bb05e192w; guid=ee31f96d5618afa786b2a03b7e6b208ce194aff05196bd62ce45a53974a9555d; mobilev=touch; __jda=122270672.1585792057.1482752023390.1482752023390.1483952449075.2; __jdb=122270672.2.1585792057|2.1483952449075; __jdc=122270672; mba_sid=1147.20; mba_muid=1585792057.1147.1483952457476; pre_session=863175026618021-a8a6681e316b|1245; pre_seq=3; __jdv=122270672|direct|-|none|-|1482752023413'
         }
         resp = requests.post('https://train.m.jd.com/coupon/couponList.json',data='totalFee=0',headers=headers)
         print resp.text
