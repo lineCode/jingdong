@@ -78,8 +78,8 @@ class Login:
             self.uuid, sign[1], sign[0]),
             data='body=' + urllib.quote(json.dumps(body)) + '&',
             headers=headers)
-        logger.info(resp.url)
-        logger.info(resp.text)
+        logger.debug(resp.url)
+        logger.debug(resp.text)
 
         list = resp.json()
         if id:
