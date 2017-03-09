@@ -89,6 +89,10 @@ def place_order():
             passenger_ids = ','.join(order.add_passenger(passengers))
             logger.info('add passenger success.ids:%s.' % passenger_ids)
 
+            logger.info('add contract %s' % json.dumps(train['data']['contactInfo']))
+            train['data']['contactInfo']['contractId']=order.add_contract(train['data']['contactInfo']['name'],train['data']['contactInfo']['mobileNo'])
+            logger.info('add contract success.id:%s.' % train['data']['contactInfo']['contractId'])
+
             order_data = order.gen_order(train, passenger_ids)
             logger.info('order generate success,id:%s.get token...' % order_data['orderid'])
 

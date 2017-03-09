@@ -86,9 +86,9 @@ class HttpFirstTest(unittest.TestCase):
 
     def test_seach_train(self):
         url = 'http://train.m.jd.com/ticket/searchTickets.json'
-        data = {'ticketRequest.trainCode': 'G3112', 'ticketRequest.trainDate': '1482508800000',
-                'ticketRequest.fromStation': 'IZQ', 'ticketRequest.toStation': 'CWQ',
-                'ticketRequest.fromStationName': u'广州南', 'ticketRequest.toStationName': u'长沙南'}
+        data = { 'ticketRequest.trainDate': '2017-03-10',
+                'ticketRequest.fromStation': 'BJP', 'ticketRequest.toStation': 'SHH',
+                'ticketRequest.fromStationName': u'北京', 'ticketRequest.toStationName': u'上海'}
 
         cookie = 'pt_key=%s;pwdt_id=%s;sid=%s;guid=%s;pt_pin=%s;mobilev=%s' % (
             'app_openAAFYU4WsADDH7EE60HYI0wgAE0DRroawjUhbuJkcoTIFluuYKRoVB7CarIn8JDPZvuZd2QGpC7E',

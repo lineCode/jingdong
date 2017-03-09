@@ -50,6 +50,21 @@ class Order:
 
         return p_ids
 
+    def add_contract(self, name, phone):
+        url = 'https://train.m.jd.com/contact/add.json'
+        self.headers[
+            'Referer'] = 'https://train.m.jd.com/bookSeat/book/s_1482508800000_%E6%96%B0%E4%BD%99_XUG_%E7%BB%8D%E5%85%B4_SOH_G2334_edz'
+
+        data = 'contactName=%s&contactPhone=%s' % (urllib.quote_plus(name.encode('utf-8')), phone)
+        resp = requests.post(url, data=data, headers=self.headers, verify=False)
+
+        logger.debug('resp %s' % resp.text)
+        resp_body = resp.json()
+        if resp_body['success']:
+            return resp_body['contactId']
+        else:
+            raise Exception('add contract error')
+
     def gen_order(self, train, passenger_ids):
         url = 'http://train.m.jd.com/bookSeat/generateOrder.json'
 
@@ -64,7 +79,7 @@ class Order:
         logger.info('seach ticket')
         ticket = self.seach_ticket(train)
         if ticket:
-            start_time = ticket[0]['startTime']
+            start_time = ticket[0]['trainInfo']['startTime']
         else:
             raise Exception('find out ticket faild')
 
@@ -74,18 +89,21 @@ class Order:
                 'realBook': '1',
                 'phone': train['data']['contactInfo']['mobileNo'],
                 'fromStationName': train['data']['ticketsInfo'][0]['departure'].encode("utf-8"),
+                'contactId': train['data']['contactInfo']['contractId'],
                 'contact': train['data']['contactInfo']['name'].encode("utf-8"), 'password': '',
                 'passengerIds': passenger_ids,
                 'seatPrice': int(train['data']['ticketsInfo'][0]['ticketPrice'] * 100),
                 'fromStationCode': train['data']['ticketsInfo'][0]['dptStation'],
                 # 'cheCi': train['data']['ticketsInfo'][0]['coachNo'],
-                'cheCi': ticket[0]['trainCode'],
+                'cheCi': ticket[0]['trainInfo']['trainCode'],
                 'trainTime': start_time,
                 'hasInsurance': False,
                 'insuranceCode': 0,
                 'hasInvoice': False,
                 'invoiceJson': {},
-                'isGrab': False
+                'isGrab': False,
+                'userRank': '',
+                'deadline': ''
                 }
         # print data
         encode_data = urllib.urlencode(data)
@@ -181,7 +199,7 @@ class Order:
 
     def filter_ticket(self, tickets, price_range):
         for t in tickets:
-            for s in t['siteList']:
+            for s in t['seatList']:
                 if int(s['num']) > 0 and float(s['price']) >= price_range[0] and float(s['price']) <= price_range[1]:
                     # print  s['price'], s['type'], int(s['num'])
                     return t, s['price'], s['type']
