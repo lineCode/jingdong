@@ -151,7 +151,7 @@ def place_order():
 
             if partner_order_id:
                 url = 'http://op.yikao666.cn/JDTrainOpen/CallBackForMJD?order_id=%s&success=false&order_src=app&msg=%s' % (
-                    partner_order_id, e.message)
+                    partner_order_id, e.message or e)
                 logger.info('callback start.%s' % url)
                 resp = requests.get(url)
                 logger.info(resp.text)

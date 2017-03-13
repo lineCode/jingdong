@@ -103,7 +103,14 @@ decrypt_addr = d_encrypt_dll.TeaDecrypt("47 44 50 64 46 53 61 6D 74 61 6B 53 67 
 decrypt_p = ctypes.c_char_p(decrypt_addr)
 print decrypt_p.value
 
-import requests
-resp = requests.get(
-                        'http://115.29.79.63:9000/api/Cookie/Get?username=%s&password=%s' % ('1321321321', '321321321'),
-                        timeout=1)
+
+def a():
+    try:
+        raise Exception('fuck')
+    except Exception,e:
+        raise Exception('cnm',e)
+
+try:
+    a()
+except Exception,e:
+    print e.message or e
