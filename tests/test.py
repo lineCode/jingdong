@@ -113,4 +113,4 @@ def a():
 try:
     a()
 except Exception,e:
-    print e.message or e
+    print '%s'%e.message or e

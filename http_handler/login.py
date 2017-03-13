@@ -28,7 +28,7 @@ class Login:
             cookie = auth.get_cookie(resp_text)
             return cookie
         except Exception, e:
-            raise Exception('cookie parse error', e)
+            raise Exception(u'登录失败')
 
     def get_h5_cookie(self, cookie):
         body = {"action": "to", "to": 'https%3A%2F%2Ftrain.m.jd.com'}
