@@ -141,7 +141,7 @@ def place_order():
                 else:
                     raise Exception('order place faild')
             else:
-                raise Exception(u'账号存在风险')
+                raise Exception(u'下单异常')
         except requests.exceptions.ConnectionError, e:
             print 'adsl faild'
             print traceback.format_exc()
