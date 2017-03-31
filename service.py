@@ -102,7 +102,7 @@ def place_order():
             if not (couponid and couponPrice):
                 order_data['coupon'] = '&isGrab=false&payTypes=&couponIds=&couponFee=0'
             else:
-                order_data['coupon'] = '&payTypes=allDCoupon&couponIds=%s&couponFee=%s' % (
+                order_data['coupon'] = '&payTypes=allDCoupon&couponIds=%s&couponFee=%s&isGrab=false&subOrderType=1' % (
                 str(couponid), str(int(float(couponPrice) * 100)))
                 # order_data['couponid'] = couponid
                 # order_data['couponPrice'] = int(float(couponPrice) * 100)

@@ -70,7 +70,7 @@ class Login:
                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                    'User-Agent': 'Dalvik/1.6.0 (Linux; U; Android 4.4.2;)'
                    }
-        body = {"pageSize": "100", "page": "1"}
+        body = {"pageSize": "10", "page": "1"}
         sign = auth.sign('configCouponList', self.uuid, json.dumps(body))
         resp = requests.post(
             url='http://api.m.jd.com/client.action?functionId=configCouponList&clientVersion=5.8.0&build=42523&client=android&d_brand=nubia&d_model=NX507J&osVersion=4.4.2&screen=1920*1080&partner=jingdong2&uuid=%s&area=1_2802_2821_0&networkType=wifi&st=%s&sign=%s&sv=111'%(

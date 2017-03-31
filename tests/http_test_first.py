@@ -12,8 +12,8 @@ class HttpFirstTest(unittest.TestCase):
     def setUp(self):
         # self.uuid = base_data.get_random_number() + '-' + base_data.get_random_letter_number(12).lower()
         # self.user_agent = base_data.get_user_agent()
-        self.name = '18561416044'
-        self.pwd = 'atv5g9'
+        self.name = '13023343565'
+        self.pwd = '71zcww'
         self.uuid = '823466913984714-pgveoceqje9l'
         self.user_agent = 'Mozilla/5.0 (Symbian/3; Series60/5.2 NokiaN8-00/012.002; Profile/MIDP-2.1 Configuration/CLDC-1.1 ) AppleWebKit/533.4 (KHTML, like Gecko) NokiaBrowser/7.3.0 Mobile Safari/533.4 3gpp-gba'
         self.cookie = 'pin=jd_551be3034b5ca; wskey=AAFYv6tuAEDeXTGdE8dKPGyZKmsEitVCruCM5vJCPBOEMJlAfjUgYY-ycGw3o5eJk5Plkyj3mulx9Ayc7NggzDVorBvud7zU; whwswswws='
