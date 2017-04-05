@@ -36,6 +36,7 @@ def place_order():
             try:
                 resp = requests.get('http://op.yikao666.cn/JDTrainOpen/getTaskForJD?order_src=app')
                 train = resp.json()
+                # train = {"data":"{\"module\":{\"worker\":[{\"assembly\":\"FBServer.Order.TrainJD.Order_TrainJD,FBServer.Order.TrainJD.dll,1.0.0.0\",\"type\":0,\"parms\":None}],\"payer\":None},\"sessionId\":None,\"data\":{\"ticketsInfo\":[{\"coachNo\":\"G1278\",\"departure\":\"漯河西\",\"dptStation\":\"LBN\",\"destination\":\"邢台东\",\"arrStation\":\"EDP\",\"dptDate\":\"2017-04-07\",\"dptTime\":\"\",\"ticketPrice\":204.0000,\"optionType\":1}],\"contactInfo\":{\"name\":\"夏邦初\",\"IDCard\":\"130401197407226837\",\"mobileNo\":\"15077618216\"},\"passengersInfo\":[{\"name\":\"邹凡嘉\",\"IDType\":\"1\",\"IDCard\":\"510123197802174259\",\"mobileNo\":\"15077618216\"},{\"name\":\"夏邦初\",\"IDType\":\"1\",\"IDCard\":\"130401197407226837\",\"mobileNo\":\"15077618216\"}],\"count\":1,\"exData1\":\"O\",\"exData2\":{\"user\":\"15347531101\",\"pwd\":\"aa748578\",\"couponid\":\"9894437370\",\"couponPrice\":\"28.0000\",\"UseAmount\":\"399.0000\",\"cookie\":None,\"orderUser\":\"system\",\"taskType\":1,\"priceSection\":\"300\"},\"fee\":0}}","order_id":"fc9668d6d80d404d94825253ef53029f"}
                 partner_order_id = train['order_id']
                 logger.debug(json.dumps(train))
             except Exception, e:
@@ -46,6 +47,7 @@ def place_order():
                 continue
 
             train = json.loads(train['data'])
+            # train={"module":{"worker":[{"assembly":"FBServer.Order.TrainJD.Order_TrainJD,FBServer.Order.TrainJD.dll,1.0.0.0","type":0,"parms":None}],"payer":None},"sessionId":None,"data":{"ticketsInfo":[{"coachNo":"G1278","departure":"漯河西","dptStation":"LBN","destination":"邢台东","arrStation":"EDP","dptDate":"2017-04-07","dptTime":"","ticketPrice":204.0000,"optionType":1}],"contactInfo":{"name":"夏邦初","IDCard":"130401197407226837","mobileNo":"15077618216"},"passengersInfo":[{"name":"邹凡嘉","IDType":"1","IDCard":"510123197802174259","mobileNo":"15077618216"},{"name":"夏邦初","IDType":"1","IDCard":"130401197407226837","mobileNo":"15077618216"}],"count":1,"exData1":"O","exData2":{"user":"18028982324","pwd":"xaf888","couponid":"9836168764","couponPrice":"35.0000","UseAmount":"399.0000","cookie":None,"orderUser":"system","taskType":1,"priceSection":"300"},"fee":0}}
             username = train['data']['exData2']['user'].encode('utf-8')
             password = train['data']['exData2']['pwd']
             logger.info('get orderid:%s,username:%s,password:%s,logon...' % (partner_order_id, username, password))

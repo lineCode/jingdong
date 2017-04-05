@@ -7,7 +7,6 @@ import urllib
 import time
 import log_ex as logger
 
-
 class Order:
     def __init__(self, uuid, user_agent, cookie):
         self.uuid = uuid
@@ -92,7 +91,7 @@ class Order:
                 'contactId': train['data']['contactInfo']['contractId'],
                 'contact': train['data']['contactInfo']['name'].encode("utf-8"), 'password': '',
                 'passengerIds': passenger_ids,
-                'seatPrice': int(train['data']['ticketsInfo'][0]['ticketPrice'] * 100),
+                'seatPrice': int(train['data']['ticketsInfo'][0]['ticketPrice'] * 100) * len(passenger_ids.split(',')),
                 'fromStationCode': train['data']['ticketsInfo'][0]['dptStation'],
                 # 'cheCi': train['data']['ticketsInfo'][0]['coachNo'],
                 'cheCi': ticket[0]['trainInfo']['trainCode'],
@@ -133,16 +132,23 @@ class Order:
         token = re.findall(r'<input type="hidden" name="token" value="(\w+)" />', resp_body)
         if token:
             data['token'] = token[0]
+            data['referer'] = url
             return data
         else:
             raise Exception('token not found')
 
     def submit(self, data):
         url = 'https://train.m.jd.com/bookSeat/submitOrder.action'
-        data = 'token=%s&token2=%s&orderId=%s&totalFee=%d&pwd=%s' % (
-            data['token'], data['token'], data['orderid'], data['seatPrice'], data['coupon'])
+        self.headers['Referer'] = data['referer'] + '?ran=%d' % int(time.time())
+
+        data = 'token=%s&orderId=%s&totalFee=%d&pwd=%s' % (
+            data['token'], data['orderid'], data['seatPrice'], data['coupon'])
 
         logger.debug('POST %s\n%s' % (url, data))
+
+        self.headers['Origin'] = 'https://train.m.jd.com'
+        self.headers['Upgrade-Insecure-Requests'] = '1'
+
         req = requests.post(url, data=data, headers=self.headers, verify=False)
         resp = req.text
         logger.debug('resp:%s' % resp)

@@ -88,29 +88,31 @@ import time
 import base_data
 import os
 
-root_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
-login_dll_path = os.path.normpath(os.path.join(root_path, '../libs/login5.6.dll'))
+# root_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+# login_dll_path = os.path.normpath(os.path.join(root_path, '../libs/login5.6.dll'))
+#
+# # print login_dll_path,sign_dll_path
+#
+# print login_dll_path
+# d_encrypt_dll = ctypes.windll.LoadLibrary(login_dll_path)
+# encrypt_addr = d_encrypt_dll.Teaencryption("47 44 50 64 46 53 61 6D 74 61 6B 53 67 78 52 64", "01 05 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 00 00 02 00 06 00 64 01 11 00 00 02 00 34 00 10 6A 64 5F 33 30 70 32 31 36 31 32 31 36 30 69 37 00 20 66 30 37 32 39 33 39 36 34 65 63 37 36 38 35 34 66 35 32 31 61 32 65 33 33 30 61 38 65 62 32 62 00 04 00 34 30 30 30 61 30 30 30 31 30 30 30 34 30 34 30 32 30 30 32 30 30 43 43 43 43 35 43 35 36 33 45 44 31 44 32 31 36 41 37 36 33 34 33 38 46 33 36 38 45 30 36 43 00 08 00 5D 00 02 00 64 00 07 61 6E 64 72 6F 69 64 00 05 34 2E 34 2E 32 00 05 35 2E 34 2E 30 00 08 31 32 38 30 2A 37 32 30 00 05 6A 64 61 70 70 00 04 77 69 66 69 00 00 00 1C 38 36 37 33 32 33 30 32 30 33 35 30 38 39 36 2D 61 30 38 36 63 36 38 64 61 65 30 39 00 00 00 01 00 05 32 2E 34 2E 30 00 48 00 11 00 03 6E 6F 78 00 03 4D 69 34 00 03 4D 49 34 00 00")
+# encrypt_p = ctypes.c_char_p(encrypt_addr)
+# print encrypt_p.value
+#
+# decrypt_addr = d_encrypt_dll.TeaDecrypt("47 44 50 64 46 53 61 6D 74 61 6B 53 67 78 52 64", "B8 8F 67 8C 11 96 48 F8 D6 EE 70 BA F6 8C B8 52 9B 40 88 67 45 CF DC 51 5D 61 0D 51 6F ED A2 6C B6 C6 C8 D9 6C 0D 2A F9 8C C7 B4 99 83 1F ED D5 35 6A 16 E7 36 32 BE FB 45 73 7C 63 18 25 50 B7 10 15 EA 55 B3 B4 D6 CC 04 C3 B9 8D 62 2E AB DF 47 3C 48 0B 81 28 62 76 29 5C 59 E9 4C 3C DA 93 FF FD E5 4B 07 D0 A4 B1 80 9E 97 72 BB 4B 28 C0 9D 75 80 DF 06 01 E5 57 12 E5 BC CA 78 6A C4 30 D5 F2 DB 47 27 8E 07 BE 7F 88 8E 1D 41 B2 03 2E D6 14 74 AB 3C DA 23 7D")
+# decrypt_p = ctypes.c_char_p(decrypt_addr)
+# print decrypt_p.value
+#
+#
+# def a():
+#     try:
+#         raise Exception('fuck')
+#     except Exception,e:
+#         raise Exception('cnm',e)
+#
+# try:
+#     a()
+# except Exception,e:
+#     print '%s'%e.message or e
 
-# print login_dll_path,sign_dll_path
-
-print login_dll_path
-d_encrypt_dll = ctypes.windll.LoadLibrary(login_dll_path)
-encrypt_addr = d_encrypt_dll.Teaencryption("47 44 50 64 46 53 61 6D 74 61 6B 53 67 78 52 64", "01 05 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 00 00 02 00 06 00 64 01 11 00 00 02 00 34 00 10 6A 64 5F 33 30 70 32 31 36 31 32 31 36 30 69 37 00 20 66 30 37 32 39 33 39 36 34 65 63 37 36 38 35 34 66 35 32 31 61 32 65 33 33 30 61 38 65 62 32 62 00 04 00 34 30 30 30 61 30 30 30 31 30 30 30 34 30 34 30 32 30 30 32 30 30 43 43 43 43 35 43 35 36 33 45 44 31 44 32 31 36 41 37 36 33 34 33 38 46 33 36 38 45 30 36 43 00 08 00 5D 00 02 00 64 00 07 61 6E 64 72 6F 69 64 00 05 34 2E 34 2E 32 00 05 35 2E 34 2E 30 00 08 31 32 38 30 2A 37 32 30 00 05 6A 64 61 70 70 00 04 77 69 66 69 00 00 00 1C 38 36 37 33 32 33 30 32 30 33 35 30 38 39 36 2D 61 30 38 36 63 36 38 64 61 65 30 39 00 00 00 01 00 05 32 2E 34 2E 30 00 48 00 11 00 03 6E 6F 78 00 03 4D 69 34 00 03 4D 49 34 00 00")
-encrypt_p = ctypes.c_char_p(encrypt_addr)
-print encrypt_p.value
-
-decrypt_addr = d_encrypt_dll.TeaDecrypt("47 44 50 64 46 53 61 6D 74 61 6B 53 67 78 52 64", "B8 8F 67 8C 11 96 48 F8 D6 EE 70 BA F6 8C B8 52 9B 40 88 67 45 CF DC 51 5D 61 0D 51 6F ED A2 6C B6 C6 C8 D9 6C 0D 2A F9 8C C7 B4 99 83 1F ED D5 35 6A 16 E7 36 32 BE FB 45 73 7C 63 18 25 50 B7 10 15 EA 55 B3 B4 D6 CC 04 C3 B9 8D 62 2E AB DF 47 3C 48 0B 81 28 62 76 29 5C 59 E9 4C 3C DA 93 FF FD E5 4B 07 D0 A4 B1 80 9E 97 72 BB 4B 28 C0 9D 75 80 DF 06 01 E5 57 12 E5 BC CA 78 6A C4 30 D5 F2 DB 47 27 8E 07 BE 7F 88 8E 1D 41 B2 03 2E D6 14 74 AB 3C DA 23 7D")
-decrypt_p = ctypes.c_char_p(decrypt_addr)
-print decrypt_p.value
-
-
-def a():
-    try:
-        raise Exception('fuck')
-    except Exception,e:
-        raise Exception('cnm',e)
-
-try:
-    a()
-except Exception,e:
-    print '%s'%e.message or e
+print int(time.time())
