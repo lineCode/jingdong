@@ -86,3 +86,21 @@ class Login:
             return filter(lambda c: c['id'] == id,list['couponList'])
         else:
             return list
+
+    # def get_wx_pay_info(self, cookie, payload):
+    #     headers = {'Accept-Encoding': 'gzip,deflate',
+    #                'jdc-backup': cookie,
+    #                'Cookie': cookie,
+    #                'Charset': 'UTF-8',
+    #                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    #                'User-Agent': 'okhttp/3.4.1'
+    #                }
+    #     sign = auth.sign('weixinPay', self.uuid, json.dumps(payload))
+    #     resp = requests.post(
+    #         url='http://pay.m.jd.com/client.action?functionId=weixinPay&clientVersion=5.8.0&build=42523&client=android&d_brand=nubia&d_model=NX507J&osVersion=4.4.2&screen=1920*1080&partner=jingdong2&uuid=%s&area=1_2802_2821_0&networkType=wifi&st=%s&sign=%s&sv=111'%(
+    #         #url = 'http://api.m.jd.com/client.action?functionId=configCouponList&clientVersion=5.8.0&build=42523&client=android&d_brand=&d_model=&osVersion=&screen=1280*720&partner=tencent&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+    #         self.uuid, sign[1], sign[0]),
+    #         data='body=' + urllib.quote(json.dumps(payload)) + '&',
+    #         headers=headers)
+    #     logger.info(resp.text)
+    #     return resp.json()
