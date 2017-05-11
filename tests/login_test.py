@@ -7,7 +7,7 @@ class HttpSqsTestSuite(unittest.TestCase):
     def test_login(self):
         user_agent = base_data.get_user_agent()
         uuid = base_data.get_random_number() + '-' + base_data.get_random_letter_number(12).lower()
-        login = http_handler.login.Login('17322576361', 'wvuj1566', uuid, user_agent)
+        login = http_handler.login.Login('14747275361', '4u2e4sa0', uuid, user_agent)
         cookie = login.get_cookie()
         print cookie
         print login.get_h5_cookie(cookie)
