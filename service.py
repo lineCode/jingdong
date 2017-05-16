@@ -28,7 +28,7 @@ def place_order():
             currentHour = int(time.strftime('%H', time.localtime(time.time())))
             if currentHour > 22 or currentHour < 7:
                 print 'sleep a hour'
-                time.sleep(3600)
+                time.sleep(600)
                 continue
 
             logger.info('--------------------------')
@@ -143,7 +143,7 @@ def place_order():
                 else:
                     raise Exception('order place faild')
             else:
-                raise Exception(u'下单异常')
+                raise Exception(u'已经三次预定')
         except requests.exceptions.ConnectionError, e:
             print 'adsl faild'
             print traceback.format_exc()
