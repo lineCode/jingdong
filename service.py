@@ -139,6 +139,7 @@ def place_order():
                     # logger.info('get pc cookie')
 
                     logger.info('ALL SUCCESS')
+
                     time.sleep(PLACEORDERINTERVAL)
                 else:
                     raise Exception('order place faild')
