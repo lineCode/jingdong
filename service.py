@@ -143,7 +143,7 @@ def place_order():
                 else:
                     raise Exception('order place faild')
             else:
-                raise Exception(u'已经三次预定')
+                raise Exception(u'已经3次预定')
         except requests.exceptions.ConnectionError, e:
             print 'adsl faild'
             print traceback.format_exc()
