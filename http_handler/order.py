@@ -86,6 +86,8 @@ class Order:
                 'toStationCode': train['data']['ticketsInfo'][0]['arrStation'],
                 'toStationName': train['data']['ticketsInfo'][0]['destination'].encode("utf-8"), 'seatType': ticket[2],
                 'realBook': '1',
+                'acceptNoSeat':0,
+                'ticketType':1,
                 'phone': train['data']['contactInfo']['mobileNo'],
                 'fromStationName': train['data']['ticketsInfo'][0]['departure'].encode("utf-8"),
                 'contactId': train['data']['contactInfo']['contractId'],
