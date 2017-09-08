@@ -84,5 +84,5 @@ def get_verifycode(verifycode_url):
 
 
 if __name__ == "__main__":
-    get_cookie('18784314177', 'xx334331')
+    print get_cookie('18784314177', 'xx334331')
     # get_verifycode('')

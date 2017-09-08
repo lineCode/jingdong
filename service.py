@@ -8,9 +8,7 @@ import traceback
 import time
 import os
 import adsl
-import urllib
-import auth
-import redis
+
 
 PLACEORDERINTERVAL = 1
 # FAILDWAITING = 180
@@ -51,6 +49,10 @@ def place_order():
             username = train['data']['exData2']['user'].encode('utf-8')
             password = train['data']['exData2']['pwd']
             logger.info('get orderid:%s,username:%s,password:%s,logon...' % (partner_order_id, username, password))
+
+            pc_cookie = http_handler.jd_pc_login(username,password)
+            if not pc_cookie:
+                raise Exception("get pc cookie faild")
 
             uuid = base_data.get_random_number() + '-' + base_data.get_random_letter_number(12).lower()
             user_agent = base_data.get_user_agent()
@@ -114,21 +116,19 @@ def place_order():
                 logger.info('get order details')
                 order_details = order.get_details(order_data['orderid'])
                 if order_details:
-                    logger.info('get pc cookie')
-                    pc_cookie = ''
-                    try:
-                        resp = requests.get(
-                            'http://115.29.79.63:9000/api/Cookie/Get?username=%s&password=%s' % (username, password),
-                            timeout=10)
-                        data = resp.json()
-                        if data['Status']:
-                            pc_cookie = data['Cookie']
-                        else:
-                            logger.error(data['Message'])
-                    except requests.exceptions.ReadTimeout:
-                        logger.error('timeout')
-                    except Exception, e:
-                        logger.error(e.message)
+                    # try:
+                    #     resp = requests.get(
+                    #         'http://115.29.79.63:9000/api/Cookie/Get?username=%s&password=%s' % (username, password),
+                    #         timeout=10)
+                    #     data = resp.json()
+                    #     if data['Status']:
+                    #         pc_cookie = data['Cookie']
+                    #     else:
+                    #         logger.error(data['Message'])
+                    # except requests.exceptions.ReadTimeout:
+                    #     logger.error('timeout')
+                    # except Exception, e:
+                    #     logger.error(e.message)
 
                     logger.info('erpOrderId %s,callback start...' % order_details['erpOrderId'])
                     resp = requests.get(
@@ -136,8 +136,6 @@ def place_order():
                             partner_order_id, order_details['erpOrderId'], order_data['orderid'],
                             order_details['onlinePayFee'], order_data['cheCi'], order_data['seatType'], pc_cookie))
                     logger.info(resp.text)
-                    # logger.info('get pc cookie')
-
                     logger.info('ALL SUCCESS')
 
                     time.sleep(PLACEORDERINTERVAL)
