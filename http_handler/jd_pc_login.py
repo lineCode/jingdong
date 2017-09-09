@@ -56,7 +56,10 @@ def get_cookie(username, password):
 
     if '({"success":"http://www.jd.com"})' == resp.text:
         logger.info('login success')
-        return resp.headers['Set-Cookie']
+        cookies = []
+        for c in resp.headers['Set-Cookie'].split(';,'):
+            cookies.append(c.split(';')[0].strip())
+        return ';'.join(cookies)
 
     logger.info('login faild')
     return None
@@ -86,3 +89,12 @@ def get_verifycode(verifycode_url):
 if __name__ == "__main__":
     print get_cookie('18784314177', 'xx334331')
     # get_verifycode('')
+
+    # cookie = 'login_c=1; Expires=Mon, 9-Oct-2017 04:41:10 GMT; Path=/; HttpOnly, mp=18784314177; Expires=Mon, 9-Oct-2017 04:41:10 GMT; Path=/; HttpOnly;, TrackID=1Fg60XhviwgKQvLEjYK_z70VHP_ht5_idm3Mtx4OUAtoTQpbtR0moUYYwYFR570s9a3vkQR3Qki-C-DD_sAewX-HI6KXXBdigr4wHpWgyGL4; Domain=.jd.com; Expires=Thu, 8-Sep-2022 04:41:10 GMT; Path=/;, pinId=kLRXkVg5T_1H0wT8lNXSVLV9-x-f3wj7; Domain=.jd.com; Expires=Sun, 9-Sep-2018 04:41:10 GMT; Path=/;, pin=jd_4a17203041cf4; Domain=.jd.com; Expires=Mon, 9-Oct-2017 04:41:10 GMT; Path=/;, unick=jd_187843slgx; Domain=.jd.com; Expires=Mon, 9-Oct-2017 04:41:10 GMT; Path=/; HttpOnly;, thor=B65B3FF5284C56A4F5FBF6544F7D40956DAE9B2865A6E229B3B218B001D73476C6CF1C93541BB2593694B7674187E7D9A3591AE9DE104EB2CE3CCC1C99826A300883A9E5D383CF050DC5D43A2F12796C6BAB84C453CF25FDFC89CCA0AD434DC3CC0628DC93A1C8CC0AC4F014963527DCB82244BA4AD6032CAEFC326817256F279FFC0AF6F98826AF75BAE2A072C125359B9AE0BF4159F5DF9928995D7E013DD1; Domain=.jd.com; Path=/; HttpOnly;, ol=1; Path=/; HttpOnly;, _tp=8pB%2FDXRnhElokNnQI8xVfmlJGtIvlmsWsHovq3G17w4%3D; Domain=.jd.com; Expires=Mon, 9-Oct-2017 04:41:10 GMT; Path=/;, logining=1; Domain=.jd.com; Path=/;, _pst=jd_4a17203041cf4; Domain=.jd.com; Expires=Mon, 9-Oct-2017 04:41:10 GMT; Path=/; HttpOnly;, ceshi3.com=101; Domain=.jd.com; Path=/;'
+    # cookies=[]
+    # for c in cookie.split(';,'):
+    #     print c
+    #     cookies.append(c.split(';')[0].strip())
+    #
+    # print cookies
+    # print ';'.join(cookies)
