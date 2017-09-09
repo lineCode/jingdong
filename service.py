@@ -65,9 +65,10 @@ def place_order():
             if not pc_cookie:
                 raise Exception("get pc cookie faild")
 
-            login = http_handler.login.Login(username, password, uuid, user_agent)
-            cookie = login.get_cookie()
-            logger.info('login success,cookie:%s' % cookie)
+            if not train['data']['exData2']['app_cookie']:
+                login = http_handler.login.Login(username, password, uuid, user_agent)
+                cookie = login.get_cookie()
+                logger.info('login success,cookie:%s' % cookie)
 
             h5_cookie = login.get_h5_cookie(cookie)
             logger.info('get h5 cookie:%s' % h5_cookie)
