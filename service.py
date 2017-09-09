@@ -50,20 +50,20 @@ def place_order():
             password = train['data']['exData2']['pwd']
             logger.info('get orderid:%s,username:%s,password:%s,logon...' % (partner_order_id, username, password))
 
-            pc_cookie = http_handler.jd_pc_login(username,password)
-            if not pc_cookie:
-                raise Exception("get pc cookie faild")
-
             uuid = base_data.get_random_number() + '-' + base_data.get_random_letter_number(12).lower()
             user_agent = base_data.get_user_agent()
 
-            # while True:
-            #     adsl_service.reconnect()
-            #     return1 = os.system('ping baidu.com')
-            #     if return1:
-            #         continue
-            #     else:
-            #         break
+            while True:
+                adsl_service.reconnect()
+                return1 = os.system('ping baidu.com')
+                if return1:
+                    continue
+                else:
+                    break
+
+            pc_cookie = http_handler.jd_pc_login(username, password)
+            if not pc_cookie:
+                raise Exception("get pc cookie faild")
 
             login = http_handler.login.Login(username, password, uuid, user_agent)
             cookie = login.get_cookie()
@@ -132,7 +132,8 @@ def place_order():
 
                     logger.info('erpOrderId %s,callback start...' % order_details['erpOrderId'])
                     resp = requests.get(
-                        'http://op.yikao666.cn/JDTrainOpen/CallBackForMJD?order_id=%s&jdorder_id=%s&success=true&order_no=%s&amount=%s&order_src=app&checi=%s&seatTyp=%s&cookie=%s' % (
+                        'http://op.yikao666.cn/JDTrainOpen/CallBackForMJD?order_id=%s&jdorder_id='
+                        '%s&success=true&order_no=%s&amount=%s&order_src=app&checi=%s&seatTyp=%s&cookie=%s' % (
                             partner_order_id, order_details['erpOrderId'], order_data['orderid'],
                             order_details['onlinePayFee'], order_data['cheCi'], order_data['seatType'], pc_cookie))
                     logger.info(resp.text)
