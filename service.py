@@ -9,7 +9,6 @@ import time
 import os
 import adsl
 
-
 PLACEORDERINTERVAL = 1
 # FAILDWAITING = 180
 
@@ -61,11 +60,14 @@ def place_order():
                 else:
                     break
 
-            pc_cookie = http_handler.jd_pc_login(username, password)
+            pc_cookie = train['data']['exData2']['pc_cookie']
             if not pc_cookie:
-                raise Exception("get pc cookie faild")
+                pc_cookie = http_handler.jd_pc_login(username, password)
+                if not pc_cookie:
+                    raise Exception("get pc cookie faild")
 
-            if not train['data']['exData2']['app_cookie']:
+            cookie = train['data']['exData2']['app_cookie']
+            if not cookie:
                 login = http_handler.login.Login(username, password, uuid, user_agent)
                 cookie = login.get_cookie()
                 logger.info('login success,cookie:%s' % cookie)
@@ -95,7 +97,8 @@ def place_order():
             logger.info('add passenger success.ids:%s.' % passenger_ids)
 
             logger.info('add contract %s' % json.dumps(train['data']['contactInfo']))
-            train['data']['contactInfo']['contractId']=order.add_contract(train['data']['contactInfo']['name'],train['data']['contactInfo']['mobileNo'])
+            train['data']['contactInfo']['contractId'] = order.add_contract(train['data']['contactInfo']['name'],
+                                                                            train['data']['contactInfo']['mobileNo'])
             logger.info('add contract success.id:%s.' % train['data']['contactInfo']['contractId'])
 
             order_data = order.gen_order(train, passenger_ids)
@@ -108,7 +111,7 @@ def place_order():
                 order_data['coupon'] = '&isGrab=false&payTypes=&couponIds=&couponFee=0'
             else:
                 order_data['coupon'] = '&payTypes=allDCoupon&couponIds=%s&couponFee=%s&isGrab=false&subOrderType=1' % (
-                str(couponid), str(int(float(couponPrice) * 100)))
+                    str(couponid), str(int(float(couponPrice) * 100)))
                 # order_data['couponid'] = couponid
                 # order_data['couponPrice'] = int(float(couponPrice) * 100)
 
