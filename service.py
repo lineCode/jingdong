@@ -52,17 +52,17 @@ def place_order():
             uuid = base_data.get_random_number() + '-' + base_data.get_random_letter_number(12).lower()
             user_agent = base_data.get_user_agent()
 
-            while True:
-                adsl_service.reconnect()
-                return1 = os.system('ping baidu.com')
-                if return1:
-                    continue
-                else:
-                    break
+            # while True:
+            #     adsl_service.reconnect()
+            #     return1 = os.system('ping baidu.com')
+            #     if return1:
+            #         continue
+            #     else:
+            #         break
 
             pc_cookie = train['data']['exData2']['pc_cookie']
             if not pc_cookie:
-                pc_cookie = http_handler.jd_pc_login(username, password)
+                pc_cookie = http_handler.jd_pc_login.get_cookie(username, password)
                 if not pc_cookie:
                     raise Exception("get pc cookie faild")
 
