@@ -61,10 +61,17 @@ def place_order():
             #         break
 
             pc_cookie = train['data']['exData2']['pc_cookie']
+            couponType = train['data']['exData2']['couponType']
             if not pc_cookie:
-                pc_cookie = http_handler.jd_pc_login.get_cookie(username, password)
+                try:
+                    pc_cookie = http_handler.jd_pc_login.get_cookie(username, password)
+                except Exception:
+                    if couponType == 4 or couponType=='4':
+                        raise Exception("get pc cookie exception")
+
                 if not pc_cookie:
-                    raise Exception("get pc cookie faild")
+                    if couponType == 4 or couponType == '4':
+                        raise Exception("get pc cookie faild")
 
             cookie = train['data']['exData2']['app_cookie']
             if not cookie:
