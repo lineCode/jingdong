@@ -169,7 +169,7 @@ def callback_partner_and_save_order(data, success, order_id, pc_cookie=''):
                         "isPay": "false"
                     }
                 }
-                url = 'http://op.yikao666.cn/JDTrainOpen/CreatePayTaskByPhone'
+                url = 'http://op.ykjd.com/JDTrainOpen/CreatePayTaskByPhone'
                 pay_task_data = json.dumps(pay_task_data)
                 logger.debug('POST %s\n%s' % (url, pay_task_data))
                 resp = requests.post(url, data={'send_data': pay_task_data})
