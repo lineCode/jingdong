@@ -140,7 +140,7 @@ class Order:
             raise Exception('token not found')
 
     def submit(self, data):
-        url = 'https://train.m.jd.com/bookSeat/submitOrder.action'
+        url = 'https://train.m.jd.com/bookSeat/submitOrder.json'
         self.headers['Referer'] = data['referer'] + '?ran=%d' % int(time.time())
 
         data = 'token=%s&orderId=%s&totalFee=%d&pwd=%s' % (
