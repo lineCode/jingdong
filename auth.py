@@ -9,7 +9,7 @@ import os
 
 root_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 login_dll_path = os.path.normpath(os.path.join(root_path, 'libs/login5.6.dll'))
-sign_dll_path = os.path.normpath(os.path.join(root_path, 'libs/sign5.8.0.dll'))
+sign_dll_path = os.path.normpath(os.path.join(root_path, 'libs/sign6.5.0.dll'))
 
 # print login_dll_path,sign_dll_path
 

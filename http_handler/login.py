@@ -33,7 +33,7 @@ class Login:
     def get_h5_cookie(self, cookie):
         body = {"action": "to", "to": 'https%3A%2F%2Ftrain.m.jd.com'}
         sign = auth.sign('genToken', self.uuid, json.dumps(body))
-        url = 'http://api.m.jd.com/client.action?functionId=genToken&clientVersion=5.8.0&build=42523&client=android&d_brand=&d_model=&osVersion=&screen=1280*720&partner=tencent&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
+        url = 'http://api.m.jd.com/client.action?functionId=genToken&clientVersion=6.5.0&build=50121&client=android&d_brand=&d_model=&osVersion=&screen=1280*720&partner=jingdong&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
             self.uuid, sign[1], sign[0])
 
         logger.debug('POST %s' % url)
@@ -63,6 +63,7 @@ class Login:
         return session.cookies.get_dict()
 
     def get_couponList(self, cookie, id):
+        cookie='pin=jd_548063f456ee7; wskey=AAFZ9o-dAEA6TkKSJnBQYke_Q418jwhk2vDYviAvIsrjsp40yPWn46jIAuwAcSlg469qRGk-PbOkM8wV3HJnTfg3Np8EAbQv; whwswswws='
         headers = {'Accept-Encoding': 'gzip,deflate',
                    'jdc-backup': cookie,
                    'Cookie': cookie,
@@ -73,7 +74,7 @@ class Login:
         body = {"pageSize": "100", "page": "1"}
         sign = auth.sign('configCouponList', self.uuid, json.dumps(body))
         resp = requests.post(
-            url='http://api.m.jd.com/client.action?functionId=configCouponList&clientVersion=5.8.0&build=42523&client=android&d_brand=nubia&d_model=NX507J&osVersion=4.4.2&screen=1920*1080&partner=jingdong2&uuid=%s&area=1_2802_2821_0&networkType=wifi&st=%s&sign=%s&sv=111'%(
+            url='http://api.m.jd.com/client.action?functionId=configCouponList&clientVersion=6.5.0&build=50121&client=android&d_brand=nubia&d_model=NX507J&osVersion=4.4.2&screen=1920*1080&partner=jingdong&uuid=%s&area=1_2802_2821_0&networkType=wifi&st=%s&sign=%s&sv=111'%(
             #url = 'http://api.m.jd.com/client.action?functionId=configCouponList&clientVersion=5.8.0&build=42523&client=android&d_brand=&d_model=&osVersion=&screen=1280*720&partner=tencent&uuid=%s&area=1_2802_0_0&networkType=wifi&st=%s&sign=%s&sv=122' % (
             self.uuid, sign[1], sign[0]),
             data='body=' + urllib.quote(json.dumps(body)) + '&',
